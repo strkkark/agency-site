@@ -4,7 +4,7 @@
 export const AGENCY_NAME = "Meridian";
 
 export const NAV_LINKS = [
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services" }, 
   { label: "Industries", href: "/industries" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },
@@ -545,7 +545,7 @@ export const FAQS = [
 ];
 
 export const OFFICE = {
-  email: "hello@meridian.dev",
+  email: "meridian@support.com",
   phone: "+49 511 123 4567",
   address: "Georgstraße 42, 30159 Hannover, Germany",
   hours: "Monday – Friday, 9:00 – 18:00 CET",
