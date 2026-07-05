@@ -12,7 +12,12 @@ export const metadata: Metadata = {
 };
 
 const OPEN_ROLES = [
-
+  { title: "Senior Full-Stack Engineer", location: "Remote", type: "Full-time" },
+  { title: "Senior React Native Developer", location: "Remote", type: "Full-time" },
+  { title: "AI/ML Engineer", location: "Remote", type: "Full-time" },
+  { title: "Product Designer (UI/UX)", location: "Remote", type: "Full-time" },
+  { title: "DevOps / Cloud Engineer", location: "Remote", type: "Contract" },
+  { title: "Technical Project Manager", location: "Remote", type: "Full-time" },
 ];
 
 const PERKS = [
