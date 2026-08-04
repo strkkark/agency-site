@@ -41,35 +41,32 @@ export default function ContactForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const payload = {
-      name: formData.get("name"),
-      company: formData.get("company"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      budget,
-      timeline,
-      description: formData.get("description"),
-    };
+    formData.set("budget", budget || "Not selected");
+    formData.set("timeline", timeline || "Not selected");
+    formData.set("_subject", "New Meridian project inquiry");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://formspree.io/f/mzeppbzy",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(
-          data.error || "The message could not be sent."
+          data?.errors?.[0]?.message ||
+            "The message could not be sent."
         );
       }
 
       setSubmitted(true);
-
       form.reset();
       setBudget("");
       setTimeline("");
@@ -94,8 +91,7 @@ export default function ContactForm() {
         </h3>
 
         <p className="max-w-sm text-sm text-ink-300">
-          A member of our team will reach out within one
-          business day.
+          A member of our team will reach out within one business day.
         </p>
       </div>
     );
@@ -103,8 +99,15 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <input
+        type="text"
+        name="_gotcha"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+      />
 
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="name">
             Name
@@ -187,7 +190,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-          <div>
+      <div>
         <label className={labelClass}>
           Timeline
         </label>
